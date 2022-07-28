@@ -30,4 +30,4 @@ rsecli help
 python3 rsecli.py help
 ```
 
-A cli foi feitapara ser bem intuituva, mas não funciona sem o receiver, que se encontra [https://github.com/MarcoLopes389/rsecli-receiver](neste link)
+A cli foi feitapara ser bem intuituva, mas não funciona sem o receiver, que se encontra [neste link](https://github.com/MarcoLopes389/rsecli-receiver)
