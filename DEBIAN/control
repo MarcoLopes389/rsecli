@@ -1,0 +1,5 @@
+Package: rsecli
+Version: 0.0.1
+Maintainer: Marco <marco.lopes.araujo@gmail.com>
+Architecture: amd64
+Description: Remote command executor
