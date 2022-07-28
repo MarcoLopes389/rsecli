@@ -1,12 +1,12 @@
-from help import show_create_help, show_get_help, show_run_help
+from help import rsecli_shell_help, show_create_help, show_delete_help, show_get_help, show_run_help
+from repo.delete_ips import delete_ips
 from shell.normal_shell import exec_command, normal_shell
 from utils.clear_terminal import clear_terminal
 from utils.create_script import create_script
-from shell.help import show_help
 from repo.delete_results import delete_results
-from repo.get_all_results import get_all_results
 from utils.print_banner import print_banner
 from utils.print_registred_ips import print_registred_ips
+from utils.print_results import print_results
 from utils.solicite_file import solicite_file
 
 def rsecli_shell():
@@ -19,7 +19,7 @@ def rsecli_shell():
             print('bye bye!')
             break
         elif cmd == 'help':
-            show_help()
+            rsecli_shell_help()
         elif cmd == 'create':
             show_create_help()
         elif ' ' in cmd and cmd.split(' ')[0] == 'create':
@@ -35,14 +35,22 @@ def rsecli_shell():
             if(cmd.split(' ')[1] == 'ips'):
                 print_registred_ips()
             elif(cmd.split(' ')[1] == 'results'):
-                get_all_results()
+                print_results()
             elif cmd.split(' ')[1] == 'file':
                 solicite_file()
             else:
                 print('Unknown get option')
                 show_get_help()
-        elif cmd == 'clear-results':
-            delete_results()
+        elif cmd == 'delete':
+            show_delete_help()
+        elif ' ' in cmd and cmd.split(' ')[0] == 'delete':
+            if(cmd.split(' ')[1] == 'ips'):
+                delete_ips()
+            elif(cmd.split(' ')[1] == 'results'):
+                delete_results()
+            else:
+                print('Unknown delete option')
+                show_delete_help()
         elif cmd == 'realtime':
             normal_shell()
         elif cmd == 'run':

@@ -1,62 +1,71 @@
 from sys import argv
-from help import show_create_help, show_delete_help, show_get_help, show_help, show_run_help
+from help import show_create_help, show_delete_help, show_get_help, show_cli_help, show_run_cli_help
+from repo.delete_ips import delete_ips
 from shell.normal_shell import exec_command
 
 from shell.shell import init_shell
 from utils.create_script import create_script
 from repo.delete_results import delete_results
-from repo.get_all_results import get_all_results
 from utils.print_registred_ips import print_registred_ips
+from utils.print_results import print_results
 
 ip = ''
 command = ''
 
 def main(argv=argv):
     if len(argv) <= 1:
-        show_help()
+        show_cli_help()
         return
 
     for i in range(1, len(argv)):
         match argv[i]:
             case '-h' | '--help' | 'help':
-                show_help()
+                show_cli_help()
                 return
+
             case '--shell' | 'shell':
                 init_shell()
                 return
+
             case '--shell-realtime' | 'shell-realtime':
                 init_shell(realtime=True)
                 return
-            case 'create':
+
+            case 'create' | '-c' | '--create':
+                if len(argv) != i+2:
+                    show_create_help()
+                    return
                 match argv[i+1]:
                     case 'script':
                         create_script()
                         return
-                    case _:
-                        show_create_help()
-            case 'get':
+                        
+            case 'get' | '-g' | '--get':
                 if len(argv) != i+2:
                     show_get_help()
                     return
                 match argv[i+1]:
                     case 'results':
-                        get_all_results()
+                        print_results()
                         return
                     case 'ips':
                         print_registred_ips()
                         return
-            case 'run':
+
+            case 'run' | '-r' | '--run':
                 for j in range(1, len(argv)):
                     match argv[j]:
                         case '--ip':
                             ip = argv[j+1]
                         case '--command':
                             command = argv[j+1]
-                        case _:
-                            show_run_help()
 
-                exec_command(command, ip)   
-            case 'delete':
+                if(ip == '' or command == ''):
+                    show_run_cli_help()
+                else:
+                    exec_command(command, ip) 
+
+            case 'delete' | '-d' | '--delete':
                 if len(argv) != i+2:
                     show_delete_help()
                     return
@@ -64,9 +73,8 @@ def main(argv=argv):
                     case 'results':
                         delete_results()
                         return
-            case '':
-                show_help()
-                return
+                    case 'ips':
+                        delete_ips()
 
 if __name__ == '__main__':
     main()

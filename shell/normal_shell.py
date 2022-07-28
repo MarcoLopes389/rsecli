@@ -3,6 +3,10 @@ from utils.clear_terminal import clear_terminal
 from utils.print_banner import print_banner
 from utils.print_registred_ips import print_registred_ips
 
+# area to collections vars
+commands = get_commands_collection()
+results = get_results_collection()
+
 def normal_shell():
     print_registred_ips()
     ip = input('Enter the ip of the target machine: ')
@@ -14,17 +18,17 @@ def normal_shell():
         if cmd == 'exit':
             print('exited realtime shell')
             break
-        exec_command(cmd, ip)
+        exec_command(cmd, ip.strip())
         
 
 def exec_command(cmd, ip):
-    get_commands_collection().insert_one({'commands': cmd, 'ip': ip, 'realtime': True})
+    commands.insert_one({'commands': cmd, 'ip': ip, 'realtime': True})
     while True:
-        result = get_results_collection().find_one({'command': cmd})
+        result = results.find_one({'command': cmd, 'ip': ip})
         if result:
             print(result['results'])
-            get_commands_collection().delete_one({'command': cmd})
-            get_results_collection().delete_one({'command': cmd})
+            commands.delete_one({'command': cmd, 'ip': ip})
+            results.delete_one({'command': cmd, 'ip': ip})
             break
         else:
             continue

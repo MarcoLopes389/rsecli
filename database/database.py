@@ -20,3 +20,6 @@ def get_results_collection():
 def get_files_collection():
     collection = connection.cadastro.get_collection('files')
     return collection
+
+def get_db():
+    return connection.cadastro
