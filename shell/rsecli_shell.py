@@ -62,3 +62,4 @@ def rsecli_shell():
                 show_run_help()
         else:
             print('Unknown command: ' + cmd)
+            rsecli_shell_help()

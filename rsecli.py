@@ -39,6 +39,9 @@ def main(argv=argv):
                     case 'script':
                         create_script()
                         return
+                    case _:
+                        show_create_help()
+                        return
                         
             case 'get' | '-g' | '--get':
                 if len(argv) != i+2:
@@ -47,10 +50,11 @@ def main(argv=argv):
                 match argv[i+1]:
                     case 'results':
                         print_results()
-                        return
                     case 'ips':
                         print_registred_ips()
-                        return
+                    case _:
+                        show_get_help()
+                return
 
             case 'run' | '-r' | '--run':
                 for j in range(1, len(argv)):
@@ -62,6 +66,7 @@ def main(argv=argv):
 
                 if(ip == '' or command == ''):
                     show_run_cli_help()
+                    return
                 else:
                     exec_command(command, ip) 
 
@@ -72,9 +77,11 @@ def main(argv=argv):
                 match argv[i+1]:
                     case 'results':
                         delete_results()
-                        return
                     case 'ips':
                         delete_ips()
+                    case _:
+                        show_delete_help()
+                return
 
 if __name__ == '__main__':
     main()

@@ -31,7 +31,7 @@ def show_create_help():
 
 def show_delete_help():
     print('Usage: delete [option]')
-    print('\tresults\tDelete all registred results of commands')
+    print('\t\tresults\t\tDelete all registred results of commands')
 
 help_message = """
 exit                   Exit the shell
