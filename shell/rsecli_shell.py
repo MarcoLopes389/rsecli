@@ -1,6 +1,9 @@
+
 from help import rsecli_shell_help, show_create_help, show_delete_help, show_get_help, show_run_help
 from repo.delete_ips import delete_ips
+from editor.editor import init_editor
 from shell.normal_shell import exec_command, normal_shell
+from utils.call_edition import call_edition
 from utils.clear_terminal import clear_terminal
 from utils.create_script import create_script
 from repo.delete_results import delete_results
@@ -24,7 +27,7 @@ def rsecli_shell():
             show_create_help()
         elif ' ' in cmd and cmd.split(' ')[0] == 'create':
             if(cmd.split(' ')[1] == 'script'):
-                create_script()
+                init_editor()
             else:
                 print('Unknown create option')
         elif cmd == 'clear':
@@ -60,6 +63,13 @@ def rsecli_shell():
                 exec_command(cmd.split(' ')[2], cmd.split(' ')[1])
             else:
                 show_run_help()
+        elif cmd == 'edit':
+            pass
+        elif ' ' in cmd and cmd.split(' ')[0] == 'edit':
+            if(cmd.split(' ')[1] == 'file'):
+                call_edition()
+            else:
+                print('Unknown edit option')
         else:
             print('Unknown command: ' + cmd)
             rsecli_shell_help()

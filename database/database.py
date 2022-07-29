@@ -5,6 +5,9 @@ load_dotenv()
 
 connection = MongoClient(os.environ.get('MONGODB_URI'))
 
+def get_db():
+    return connection.cadastro
+
 def get_commands_collection():
     collection = connection.cadastro.get_collection('commands')
     return collection

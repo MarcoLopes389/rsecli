@@ -1,4 +1,5 @@
 from sys import argv
+from editor.editor import init_editor
 from help import show_create_help, show_delete_help, show_get_help, show_cli_help, show_run_cli_help
 from repo.delete_ips import delete_ips
 from shell.normal_shell import exec_command
@@ -81,7 +82,13 @@ def main(argv=argv):
                         delete_ips()
                     case _:
                         show_delete_help()
-                return
+                        return
+            case 'edit':
+                if len(argv) != i+2:
+                    return
+                match argv[i+1]:
+                    case 'file':
+                        return
 
 if __name__ == '__main__':
     main()
