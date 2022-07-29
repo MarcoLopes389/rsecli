@@ -1,3 +1,4 @@
+#TODO: atualizar o help
 def show_cli_help():
     print('\t-h\t\t\tPrint this help message')
     print('\t--shell\t\t\tStart a normal shell')
@@ -7,7 +8,6 @@ def show_cli_help():
     print('\t--create-script\t\tCreate a new script')
     print('\t--get-all-results\tGet all registred results of commands')
     print('\trun\t\t\tExecute the command')
-    return True
 
 def show_run_help():
     print('Usage: run [ip] [command]')
@@ -33,6 +33,10 @@ def show_delete_help():
     print('Usage: delete [option]')
     print('\t\tresults\t\tDelete all registred results of commands')
 
+def show_edit_help():
+    print('Usage: edit [option]')
+    print('\t\tfile\t\tEdit a file of other machine')
+
 help_message = """
 exit                   Exit the shell
 help                   Print this help message
@@ -50,6 +54,8 @@ clear                  Clear the terminal
 run [ip] [command]     Execute the command
              ip        The ip of the target machine
              command   The command to execute
+edit        [option]   Edit a thing
+             file      Edit a file of other machine
 realtime               Start the realtime shell
 """
 

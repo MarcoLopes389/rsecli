@@ -1,5 +1,5 @@
 
-from help import rsecli_shell_help, show_create_help, show_delete_help, show_get_help, show_run_help
+from help import rsecli_shell_help, show_create_help, show_delete_help, show_edit_help, show_get_help, show_run_help
 from repo.delete_ips import delete_ips
 from editor.editor import init_editor
 from shell.normal_shell import exec_command, normal_shell
@@ -64,7 +64,7 @@ def rsecli_shell():
             else:
                 show_run_help()
         elif cmd == 'edit':
-            pass
+            show_edit_help()
         elif ' ' in cmd and cmd.split(' ')[0] == 'edit':
             if(cmd.split(' ')[1] == 'file'):
                 call_edition()
