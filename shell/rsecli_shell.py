@@ -5,7 +5,6 @@ from editor.editor import init_editor
 from shell.normal_shell import exec_command, normal_shell
 from utils.call_edition import call_edition
 from utils.clear_terminal import clear_terminal
-from utils.create_script import create_script
 from repo.delete_results import delete_results
 from utils.print_banner import print_banner
 from utils.print_registred_ips import print_registred_ips

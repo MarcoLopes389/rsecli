@@ -1,6 +1,6 @@
 from sys import argv
-from editor.editor import init_editor
-from help import show_create_help, show_delete_help, show_get_help, show_cli_help, show_run_cli_help
+from pymongo.errors import PyMongoError
+from help import show_create_help, show_delete_help, show_edit_help, show_get_help, show_cli_help, show_run_cli_help
 from repo.delete_ips import delete_ips
 from shell.normal_shell import exec_command
 
@@ -85,10 +85,21 @@ def main(argv=argv):
                         return
             case 'edit':
                 if len(argv) != i+2:
+                    show_edit_help()
                     return
                 match argv[i+1]:
                     case 'file':
                         return
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('\nExiting...')
+        exit(0)
+    except PyMongoError:
+        print('\nError: MongoDB not connected')
+        exit(1)
+    except TimeoutError:
+        print('\nError: Timeout')
+        exit(1)

@@ -50,6 +50,7 @@ def init_editor(text='', edit=False, path='', ip=''):
     Label(root, text="IP:", font='sans-serif').pack()
     entry = Entry(root)
     entry.pack(fill=X)
+    entry.insert(0, ip)
     
     scrollbar.config(command=text_info.yview)
     
