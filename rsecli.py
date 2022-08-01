@@ -97,9 +97,11 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('\nExiting...')
         exit(0)
-    except PyMongoError:
-        print('\nError: MongoDB not connected')
-        exit(1)
-    except TimeoutError:
-        print('\nError: Timeout')
-        exit(1)
+    except Exception as e:
+        if isinstance(e, PyMongoError):
+            print('\nError: MongoDB not connected')
+            exit(1)
+        if isinstance(e, TimeoutError):
+            print('\nError: Timeout')
+            print(e.args.index(0))
+            exit(1)

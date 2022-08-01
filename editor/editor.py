@@ -7,6 +7,7 @@ def init_editor(text='', edit=False, path='', ip=''):
     def onclose():
         if messagebox.askokcancel('Save', 'Do you want to save changes?'):
             ip = entry.get()
+
             commands = text_info.get('1.0', 'end-1c')
             if(ip != '' and commands != ''):
                 get_commands_collection().insert_one({
@@ -18,18 +19,21 @@ def init_editor(text='', edit=False, path='', ip=''):
                 root.destroy()
             else:
                 messagebox.showerror('Error', 'You must enter an IP and commands!')
+                
         elif messagebox.askokcancel('Quit', 'Do you want to quit?'):
             root.destroy()
     
     def oncloseedit():
         if messagebox.askokcancel('Save', 'Do you want to save changes?'):
             ip = entry.get()
+
             if(ip != ''):
                 get_files_collection().update_one({'path': path, 'ip': ip}, {'$set': {'file': text_info.get('1.0', 'end-1c'), 'ready': True}})
                 print('File updated!')
                 root.destroy()
             else:
                 messagebox.showerror('Error', 'You must enter an IP!')
+
         elif messagebox.askokcancel('Quit', 'Do you want to quit?'):
             root.destroy()
   
