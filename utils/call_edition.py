@@ -7,7 +7,7 @@ def call_edition():
     path = input('Path: ')
     text = ''
 
-    get_files_collection().insert_one({'path': path, 'ip': ip, 'status': 'pending', 'edit': True, 'ready': False})
+    get_files_collection().insert_one({'path': path, 'ip': ip, 'status': 'pending', 'edit': True, 'ready': False, 'done': False})
 
     init_time = time()
 
